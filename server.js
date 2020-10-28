@@ -17,16 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 require('dotenv').config()
 
 // email a2
-// const apiKey = require("./models/email"); 
-// const emailService = new apiKey(); 
-
-// const m_apiKey = emailService.getKey(); 
-// const m_domain = emailService.getDomain(); 
-// const mailgun = require("mailgun-js")({apiKey: m_apiKey, domain: m_domain}); 
 const mailgun = require("mailgun-js")({apiKey: process.env.EMAILPW, domain: process.env.EDOMAIN}); 
-
-// 
-
 
 // HOME
 app.get("/", (req, res)=> {
@@ -147,8 +138,8 @@ app.post("/login", (req, res)=> {
     } 
     res.redirect('/'); 
 })
-const PORT = process.env.PORT || 3000;  
+const PORT = process.env.PORT;
 
-app.listen(PORT, ()=> {
-    console.log(`The web server is up and running`); 
-})
+app.listen(PORT,()=>{
+    console.log(`Web Server is up and running, port ${PORT}`);    
+});
