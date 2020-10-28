@@ -14,13 +14,17 @@ app.use(express.static("public"));
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// email a2
-const apiKey = require("./models/email"); 
-const emailService = new apiKey(); 
+require('dotenv').config()
 
-const m_apiKey = emailService.getKey(); 
-const m_domain = emailService.getDomain(); 
-const mailgun = require("mailgun-js")({apiKey: m_apiKey, domain: m_domain}); 
+// email a2
+// const apiKey = require("./models/email"); 
+// const emailService = new apiKey(); 
+
+// const m_apiKey = emailService.getKey(); 
+// const m_domain = emailService.getDomain(); 
+// const mailgun = require("mailgun-js")({apiKey: m_apiKey, domain: m_domain}); 
+const mailgun = require("mailgun-js")({apiKey: process.env.EMAILPW, domain: process.env.EDOMAIN}); 
+
 // 
 
 
