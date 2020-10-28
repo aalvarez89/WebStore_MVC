@@ -1,6 +1,6 @@
 <article class = "register"> 
-    <h2>Register for Food Delivery</h2>
-    <form action="" method="" class="register-form">
+    <form action="/register" method="POST" class="register-form">
+        <h2>Register for Food Delivery</h2>
     <label for "FirstName">
         First Name:
     </label>
@@ -9,8 +9,7 @@
         id="FirstName"
         name="FirstName"
         placeholder="First Name"
-        minlength="2"
-        required
+        value="{{ m_firstName }}"
         />
     <label for "LastName">
         Last Name: 
@@ -20,17 +19,16 @@
         id="LastName"
         name="LastName"
         placeholder="Last Name"    
-        minlength="2"
-        required
-
+        value ="{{ m_lastName }}"
      <label for="input-email">
         Email:
     </label>    
     <input
         id="input-email"
         type="email"
+        name="email"
         placeholder="Email"
-        required
+        value="{{ m_email }}"
     />
     <label for="input-password">
         Password:
@@ -38,10 +36,15 @@
     <input 
         id="input-password"
         type="password"
+        name="password"
         placeholder="Password"
-        required
+        value="{{ m_password }}"
     />
         <input id="register-button" type="submit" value="Sign Up"/>
-
     </form>
+    <div class="errors">
+        {{#each m_messages}}
+        <p>{{this}}</p>
+        {{/each}}
+    </div>
 </article>
