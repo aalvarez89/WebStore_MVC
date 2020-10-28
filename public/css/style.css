@@ -137,3 +137,78 @@ form input {
     align-items: center; 
     color: red; 
 }
+
+/* responsive design  */
+/* phone landscape and smaller  */
+
+@media all and (max-width: 568px) {
+    header {
+        height: 180px; 
+        width: 100%; 
+        font-size: 15px; 
+        text-align: center; 
+    }
+
+    h2 {
+        font-size: 14px; 
+    }
+    .container {
+        width: 100%; 
+        padding: 0px; 
+    }
+    ul {
+        display: flex; 
+        flex-direction: row; 
+        list-style: none; 
+        justify-content: space-around; 
+        align-items: center; 
+        font-size: 10px; 
+        padding: 0px; 
+    }
+        .index-container {
+        width: 100%;
+        padding: 0 3%;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+    .index-container h3 {
+        color: #283618; 
+        font-size: 12px; 
+    }
+    .index-container img {
+        height: 300px; 
+        width: 100%; 
+    }
+    #topmeals img {
+        width: 100px; 
+        height: 50px; 
+    }
+    /* cards  */
+    .cards {
+        width: 100%;
+        padding: 0 5%;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+
+    .card span {
+        font-size: 12px; 
+    }
+    .card img {
+        width: 100%; 
+        height: 150px; 
+    }
+    footer {
+        font-size: 10px; 
+        text-align: center; 
+    }
+    .errors {
+        font-size: 10px; 
+    }
+}
