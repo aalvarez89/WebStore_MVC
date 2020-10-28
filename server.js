@@ -13,6 +13,16 @@ app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// email
+const apiKey = require("./models/email"); 
+const emailService = new apiKey(); 
+
+const m_apiKey = emailService.getKey(); 
+const m_domain = emailService.getDomain(); 
+const mailgun = require("mailgun-js")({apiKey: m_apiKey, domain: m_domain}); 
+// 
+
+
 // HOME
 app.get("/", (req, res)=> {
     res.render("index", {
