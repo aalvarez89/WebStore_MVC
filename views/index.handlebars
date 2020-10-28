@@ -1,0 +1,26 @@
+<div class = "index-container">
+    {{!-- Text from hellofresh.ca --}}
+    <h3 class="indexHeading">"There are varieties from different cultures on the menu to choose from. The meat and seafood are always fresh. After using HelloFresh for more than a year, my family is very satisfied with the food and service."</h3>
+    {{!-- from unsplash by the National Cancer Institute --}}
+    <img id="indexPic1" src="/img/family.jpg" alt="An Asian family, an adult male and female are seated around a table eating a meal with a young female standing in between the adults."/>
+    {{!-- from unsplash by Stefan Vladimirov --}}
+    <img id="indexPic2" src="/img/dinner.jpg" alt="Plates of food on a dinner table"/>
+    <h3 class="indexHeading">"The recipes are varied, delicious, and easy to prepare. The ingredients are good quality, especially the protein. The phone app is very well thought out and is completely reliable. The price is reasonable for what you get."</h3>
+
+
+</div>
+<div class="indexdiv">
+    <h2>Our Top Products:</h1>
+    <article class="cards" id="topmeals">
+    {{#each data}}
+    {{#if this.topPackage}}
+    <div class = "card">
+        <span class="item">{{this.title}}</span>
+        <img class = "img" src =/img/{{this.img}} alt = {{this.title}}>
+        <span class ="price">${{this.price}}</span>
+        <span class ="synopsis">{{this.synopsis}}</span>
+        </div>
+        {{/if}}
+    {{/each}}
+</article>
+</div>

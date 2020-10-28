@@ -1,0 +1,131 @@
+/*Home Page*/
+html, body {
+    font-family: 'Montserrat', sans-serif; 
+    padding: 0; 
+    margin: 0; 
+}
+main {
+    padding-bottom: 60px; 
+}
+/*Nav Bar*/
+.logo {
+    width: 100px; 
+    height: 100px; 
+}
+ul {
+    display: flex; 
+    flex-direction: row; 
+    list-style: none; 
+    justify-content: space-around; 
+    align-items: center; 
+}
+a {
+    text-decoration: none; 
+    color: #283618; 
+}
+a:hover {
+    text-decoration: underline; 
+    color: #606c38; 
+}
+/*Header*/
+header {
+    /*image from unsplash by Dan Gold*/
+    background-image: url('/img/header.jpg');
+    background-position: center;
+    background-size: cover;
+  
+    margin-bottom: 50px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 50px; 
+    text-shadow: 4px 4px 4px #5b6658;
+    color: white;
+}
+/*Footer*/
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white; 
+    font-weight: 400;
+    width: 100%;
+    padding: 50px 0;
+    background-color: #249e8e;  
+ }
+ /*Index*/
+ .index-container {
+    width: 100%;
+    padding: 0 5%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+.index-container h3 {
+    color: #283618; 
+    font-size: 30px;
+}
+.index-container img {
+    height: 500px; 
+    width: 700px; 
+}
+/* index: top meals */
+#topmeals {
+    width: 100%;
+    padding: 0 5%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    background-color: #eaf6f4;
+}
+/* cards */
+.cards {
+    width: 100%;
+    padding: 0 5%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 80px;
+    grid-row-gap: 50px;
+    text-align: center; 
+}
+img {
+    width: 100%; 
+}
+.item {
+    display: block;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+  }
+.synopsis {
+    display: block;
+    font-size: 15px; 
+    color: rgb(82, 82, 82);
+    align-content: center; 
+    padding: 5px; 
+}
+.category{
+    display: block;
+    font-size: 14px;
+  }
+/* Registration and login */
+h2 {
+    text-align: center; 
+}
+form {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-around; 
+    align-items: center; 
+}
+form input {
+    padding: 5px; 
+    margin:5px;
+}
