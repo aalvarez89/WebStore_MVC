@@ -1,46 +1,23 @@
-<article class = "register"> 
-    <form action="/register" method="POST" class="register-form">
+<article class="register">
+    <form action="/user/register" method="POST" class="register-form">
         <h2>Register for Food Delivery</h2>
-    <label for "FirstName">
-        First Name:
-    </label>
-    <input
-        type = "text"
-        id="FirstName"
-        name="FirstName"
-        placeholder="First Name"
-        value="{{ m_firstName }}"
-        />
-    <label for "LastName">
-        Last Name: 
-    </label>
-    <input
-        type = "text"
-        id="LastName"
-        name="LastName"
-        placeholder="Last Name"    
-        value ="{{ m_lastName }}"
-     <label for="input-email">
+        <label for "FirstName">
+            First Name:
+        </label>
+        <input type="text" id="FirstName" name="FirstName" placeholder="First Name" value="{{ m_firstName }}" />
+        <label for "LastName">
+            Last Name:
+        </label>
+        <input type="text" id="LastName" name="LastName" placeholder="Last Name" value="{{ m_lastName }}" <label
+            for="input-email">
         Email:
-    </label>    
-    <input
-        id="input-email"
-        type="email"
-        name="email"
-        placeholder="Email"
-        value="{{ m_email }}"
-    />
-    <label for="input-password">
-        Password:
-    </label>
-    <input 
-        id="input-password"
-        type="password"
-        name="password"
-        placeholder="Password"
-        value="{{ m_password }}"
-    />
-        <input id="register-button" type="submit" value="Sign Up"/>
+        </label>
+        <input id="input-email" type="email" name="email" placeholder="Email" value="{{ m_email }}" />
+        <label for="input-password">
+            Password:
+        </label>
+        <input id="input-password" type="password" name="password" placeholder="Password" value="{{ m_password }}" />
+        <input id="register-button" type="submit" value="Sign Up" />
     </form>
     <div class="errors">
         {{#each m_messages}}

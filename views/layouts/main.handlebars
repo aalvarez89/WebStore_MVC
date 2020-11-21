@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
     <link rel="stylesheet" href="/css/style.css">
-    <link
-      href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Montserrat:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Montserrat:wght@400;500&display=swap"
+        rel="stylesheet" />
 </head>
+
 <body>
     <div class="container">
-        <nav>
+        {{!-- <nav>
             <ul class="headerLinks">
                 <li><a href="/">Home</a></li>
                 <li><a href="/productListing">Meal Packages</a></li>
                 <li><a href="/"><img src="/img/logo.png" class="logo"></a></li>
-                <li><a href="/register">Register</a></li>
-                <li><a href="/login">Login</a></li>
+
+                {{#if user}}
+                <li><a href="#">Register</a></li>
+                <li><a href="/user/Logout">Logout</a></li>
+                {{else}}
+                <li><a href="/user/register">Register</a></li>
+                <li><a href="/user/login">Login</a></li>
+                {{/if}}
+
             </ul>
-        </nav>        
-    <header>
-        <h1>{{slogan}}</h1>
-    </header>
+        </nav> --}}
+        {{> nav}}
+        <header>
+            <h1>{{slogan}}</h1>
+        </header>
     </div>
     <main>
         {{{body}}}
@@ -34,4 +42,5 @@
         </p>
     </footer>
 </body>
+
 </html>

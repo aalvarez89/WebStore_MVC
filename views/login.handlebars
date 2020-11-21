@@ -1,31 +1,20 @@
-<article class = "login"> 
+<article class="login">
     <h2>Customer Login</h2>
-    <form action="/login" method="POST" class="login-form">
-     <label for="input-email">
-        Email:
-    </label>    
-    <input
-        id="input-email"
-        name="email"
-        placeholder="Email"
-        value = "{{m_email}}"
-    />
-    <label for="input-password">
-        Password:
-    </label>
-    <input 
-        id="input-password"
-        type="password"
-        name="password"
-        placeholder="Password"
-        value="{{m_password}}"
-    />
-        <input id="login-button" type="submit" value="Login"/>
+    <form action="/user/login" method="POST" class="login-form">
+        <label for="input-email">
+            Email:
+        </label>
+        <input id="input-email" name="email" placeholder="Email" value="{{m_email}}" />
+        <label for="input-password">
+            Password:
+        </label>
+        <input id="input-password" type="password" name="password" placeholder="Password" value="{{m_password}}" />
+        <input id="login-button" type="submit" value="Login" />
         <a href="/">Forgot password?</a>
     </form>
-            <div class="errors">
-            {{#each messages}}
-                <p>{{this}} </p>
-            {{/each}}
-        </div>
+    <div class="errors">
+        {{#each messages}}
+        <p>{{this}} </p>
+        {{/each}}
+    </div>
 </article>

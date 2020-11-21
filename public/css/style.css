@@ -137,6 +137,24 @@ form input {
     align-items: center; 
     color: red; 
 }
+/* dashboard  */
+#dbimg {
+    width: 500px; 
+    height: 300px; 
+}
+.mealdiv {
+    width: 100%;
+    padding: 0 5%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 80px;
+    grid-row-gap: 50px;
+    text-align: center; 
+}
+h3 {
+    text-align: center; 
+}
 
 /* responsive design  */
 /* phone landscape and smaller  */
