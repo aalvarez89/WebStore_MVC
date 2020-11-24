@@ -13,6 +13,19 @@ function ensureLogin(req, res, next) {
     }
 }
 
+function ensureAdmin(req, res, next) {
+    if (!req.session.user) {
+      res.redirect("/user/login");
+    } 
+    else {
+        if (req.session.user[0].isAdmin) {
+            next();
+        } else {
+            res.redirect("/user/login");
+        }
+    }
+}
+
 router.get("/register", (req, res)=> {
     res.render("register", {
         title: "Register",
@@ -72,7 +85,7 @@ router.post("/register", (req, res)=> {
         });
 
         db.addUser(req.body).then((inData) => {
-            res.redirect('/dashboard')
+            res.redirect('/user/dashboard')
         }).catch((err) => {
             console.log(`Error adding user: ${err}`)
             res.redirect('/register')
@@ -132,9 +145,45 @@ router.post("/login", (req, res)=> {
 
 router.get("/dashboard", ensureLogin, (req, res) => {
     res.render("dashboard", {
-        title: "Dashboard"
+        title: "Dashboard",
+        users: req.session.user[0]
     });
 });
+
+router.get("/createmeals", ensureAdmin, (req, res)=> {
+    res.render("createmeals", {
+        // title: "Create Meals",
+        slogan: "Create Meals"
+    })
+}); 
+
+router.post("/createmeals", ensureAdmin, (req, res)=> {
+    let errors = {
+        messages : [],
+        fName: '',
+        lName: '',
+        email: ''
+    };
+
+
+    if (errors.messages.length > 0) {
+        res.render('createmeals', errors)
+        console.log(errors.messages)
+    } else {
+        db.createMeal(req.body).then((inData) => {
+            req.session.user = inData;
+            res.render('dashboard', {
+                title: "Dashboard",
+                users: req.session.user[0]
+            }) 
+        }).catch((err) => {
+            console.log(`Error adding meal ${err}`)
+            res.redirect('/user/createmeals')
+        })
+          
+    }
+}); 
+
 
 
 router.get("/logout", function(req, res) {

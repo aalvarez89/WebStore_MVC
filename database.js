@@ -16,7 +16,23 @@ const userSchema = new Schema({
     isAdmin: Boolean
 })
 
+const mealSchema = new Schema({
+    title: String,
+    included: String,
+    synopsis: String,
+    category: String,
+    price: Number,
+    cookTime: String,
+    noOfMeals: Number,
+    calories: String,
+    isTopPkg: Boolean,
+    imageUrl: String,
+})
+
+
+
 let Users;
+let Meals;
 
 
 module.exports.initialize = () => {
@@ -31,13 +47,16 @@ module.exports.initialize = () => {
 
         db.once('open', () => {
             Users = db.model('user_dbs', userSchema);
-            // Meals = db.model('meal_dbs', mealSchema);
+            Meals = db.model('meal_dbs', mealSchema);
             resolve()
         })
     })
 
     
 }
+
+
+// MANAGE USERS
 
 module.exports.addUser = (data) => {
     return new Promise ((resolve, reject) => {
@@ -131,5 +150,32 @@ module.exports.validateUser = (data) => {
             })
         }
 
+    })
+}
+
+// MANAGE MEALS
+
+module.exports.createMeal = (data) => {
+    return new Promise ((resolve, reject) => {
+        
+        data.isTopPkg = (data.isTopPkg)? true: false;
+
+        for (let formEntry in data) {
+            console.log(formEntry, formEntry.valueOf())
+            if (data[formEntry] == '') data[formEntry] = null;
+        }
+
+        let newMeal = new Meals(data);
+
+        newMeal.save((err) => {
+            if (err) {
+                console.error(`ERROR: ${err}`)
+                reject()
+            }
+            else {
+                console.log(`Meal [${data.name}] stored in database: `)
+                resolve()
+            }
+        })
     })
 }

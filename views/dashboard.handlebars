@@ -1,4 +1,13 @@
 <h2 class="meals-h3">Hello {{users.FirstName}} {{users.LastName}}</h2>
+{{#if users.isAdmin}}
+<div class="menuWrapper">
+    <ul id="menu">
+        <li><a href="/user/createmeals">Create Meal</a></li>
+        <li><a>Edit Meal</a></li>
+        <li><a>View Meals</a></li>
+    </ul>
+</div>
+{{/if}}
 <div class="wrapper">
     <div class="dbdiv">
         <h3>Your Recent Meals</h3>
