@@ -160,6 +160,63 @@ form input {
 h3 {
     text-align: center; 
 }
+/* shopping cart  */
+.shopwrap h3 {
+    margin: 0px; 
+    text-align: right; 
+}
+.shopitem {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto 20px;  
+    padding: 10px;
+    border: 1px solid #c9c9c9; 
+  }
+.shopitem h2 {
+    margin: 0px; 
+    text-align: left; 
+}
+  .shopleft {
+    width: 15%;
+    height: 100%;
+    float: left;
+}  
+  .shopright {
+    margin-left: 15%;
+    height: 100%;
+}
+/* buy */
+.shopbuy {
+    margin: auto; 
+    width: 80%;
+    height: 100%;
+    padding: 10px;
+    display: flex; 
+    align-items: center;
+    border: 1px solid #c9c9c9;     
+}
+.buybutton {
+    width: 15%;
+    height: 100%;
+    float: left;
+}
+.total {
+    text-align: right; 
+    height: 100%;
+    width: 200px; 
+    padding-left: 80%; 
+}
+button {
+    text-decoration: none;
+    background: #249e8e;
+    color: white; 
+    font-size: 20px; 
+    padding: 20px;
+    border-radius: 50px;
+    display: inline-block;
+    border: none;
+}
+
 /* responsive design  */
 /* phone landscape and smaller  */
 

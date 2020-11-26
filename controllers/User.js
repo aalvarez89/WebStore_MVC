@@ -1,8 +1,19 @@
 const express = require('express');
 const db = require('../database.js');
 const router = express.Router();
+const path = require("path");
 const mailgun = require("mailgun-js")({apiKey: process.env.EMAILPW, domain: process.env.EDOMAIN}); 
 
+const multer = require("multer");
+const storage = multer.diskStorage({
+    destination: "../public/uploads",
+    filename: function (req, file, cb) {
+      
+      cb(null, Date.now() + path.extname(file.originalname));
+    }
+  });
+  
+const upload = multer({ storage: storage });
 
 function ensureLogin(req, res, next) {
     if (!req.session.user) {
@@ -133,7 +144,7 @@ router.post("/login", (req, res)=> {
 
             res.render("dashboard", {
                 title: "Dashboard",
-                users: inData[0]
+                users: inData
             })
 
         }).catch((err) => {
@@ -146,7 +157,7 @@ router.post("/login", (req, res)=> {
 router.get("/dashboard", ensureLogin, (req, res) => {
     res.render("dashboard", {
         title: "Dashboard",
-        users: req.session.user[0]
+        users: req.session.user
     });
 });
 
@@ -157,7 +168,7 @@ router.get("/createmeals", ensureAdmin, (req, res)=> {
     })
 }); 
 
-router.post("/createmeals", ensureAdmin, (req, res)=> {
+router.post("/createmeals", upload.single("imageFile"), (req, res)=> {
     let errors = {
         messages : [],
         fName: '',
@@ -168,20 +179,21 @@ router.post("/createmeals", ensureAdmin, (req, res)=> {
 
     if (errors.messages.length > 0) {
         res.render('createmeals', errors)
-        console.log(errors.messages)
+        // console.log(errors.messages)
     } else {
         db.createMeal(req.body).then((inData) => {
             req.session.user = inData;
             res.render('dashboard', {
                 title: "Dashboard",
-                users: req.session.user[0]
+                users: req.session.user
             }) 
         }).catch((err) => {
             console.log(`Error adding meal ${err}`)
             res.redirect('/user/createmeals')
         })
-          
+        
     }
+
 }); 
 
 
