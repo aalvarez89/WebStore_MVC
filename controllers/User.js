@@ -4,16 +4,20 @@ const router = express.Router();
 const path = require("path");
 const mailgun = require("mailgun-js")({apiKey: process.env.EMAILPW, domain: process.env.EDOMAIN}); 
 
-const multer = require("multer");
-const storage = multer.diskStorage({
-    destination: "../public/uploads",
-    filename: function (req, file, cb) {
-      
-      cb(null, Date.now() + path.extname(file.originalname));
-    }
-  });
+const app = express()
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
+
+// const multer = require("multer");
+// const storage = multer.diskStorage({
+//     destination: "../public/uploads",
+//     filename: function (req, file, cb) {
+//       console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+//       cb(null, Date.now() + path.extname(file.originalname));
+//     }
+//   });
   
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
 function ensureLogin(req, res, next) {
     if (!req.session.user) {
@@ -144,7 +148,7 @@ router.post("/login", (req, res)=> {
 
             res.render("dashboard", {
                 title: "Dashboard",
-                users: inData
+                users: inData[0]
             })
 
         }).catch((err) => {
@@ -157,7 +161,7 @@ router.post("/login", (req, res)=> {
 router.get("/dashboard", ensureLogin, (req, res) => {
     res.render("dashboard", {
         title: "Dashboard",
-        users: req.session.user
+        users: req.session.user[0]
     });
 });
 
@@ -168,19 +172,35 @@ router.get("/createmeals", ensureAdmin, (req, res)=> {
     })
 }); 
 
-router.post("/createmeals", upload.single("imageFile"), (req, res)=> {
+router.post("/createmeals", (req, res)=> {
     let errors = {
         messages : [],
         fName: '',
         lName: '',
         email: ''
     };
+    console.log(req.files)
+
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files were uploaded.');
+      }
+
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    // let sampleFile = req.files.imgFile;
+
+    // // Use the mv() method to place the file somewhere on your server
+    // sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
+    // if (err)
+    //     return res.status(500).send(err);
+
+    // res.send('File uploaded!');
+    // });
 
 
     if (errors.messages.length > 0) {
         res.render('createmeals', errors)
-        // console.log(errors.messages)
     } else {
+        console.log(req.session.user[0].FirstName) // USE THIS!!!
         db.createMeal(req.body).then((inData) => {
             req.session.user = inData;
             res.render('dashboard', {
@@ -196,6 +216,12 @@ router.post("/createmeals", upload.single("imageFile"), (req, res)=> {
 
 }); 
 
+router.get("/cart", ensureAdmin, (req, res)=> {
+    res.render("cart", {
+        title: "Shopping Cart",
+        slogan: "Ready to Checkout?"
+    })
+}); 
 
 
 router.get("/logout", function(req, res) {

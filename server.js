@@ -1,6 +1,8 @@
 //Express
 const express = require("express"); 
-const app = express(); 
+const app = express();
+const router = express.Router();
+
 
 //Dotenv
 require('dotenv').config()
@@ -19,6 +21,10 @@ app.use(express.static("public"));
 //Body Parser
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
+
+//FileUpload
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
 
 //Email App
 const mailgun = require("mailgun-js")({apiKey: process.env.EMAILPW, domain: process.env.EDOMAIN}); 
@@ -44,6 +50,8 @@ const userRoutes = require("./controllers/User");
 
 app.use("/", generalRoutes);
 app.use("/user", userRoutes);
+
+
 
 
 const PORT = process.env.PORT;
