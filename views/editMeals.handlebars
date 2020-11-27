@@ -1,6 +1,6 @@
 <article class="register">
 
-    <form action="/user/createmeals" method="POST" class="register-form" encType=”multipart/form-data”>
+    <form action="/user/editmeals" method="POST" class="register-form" encType=”multipart/form-data”>
 
 
         <div class="errors">
@@ -69,14 +69,14 @@
         </label>
         <input id="form-imgUrl" type="text" name="imgUrl" placeholder="URL" value="{{ imgUrl }}" />
 
-        <label for="form-imageFile">
+        {{!-- <label for="form-imageFile">
             Upload Image
         </label>
-        <input id="form-imageFile" type="file" name="imageFile" />
+        <input id="form-imageFile" type="file" name="imageFile" /> --}}
 
 
 
-        <input id="form-submit" type="submit" value="Add Meal" />
+        <input id="form-submit" type="submit" value="Edit Meal" />
     </form>
 
 </article>

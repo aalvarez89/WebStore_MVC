@@ -13,10 +13,10 @@
     <h2>Our Top Products:</h1>
     <article class="cards" id="topmeals">
     {{#each data}}
-    {{#if this.topPackage}}
+    {{#if this.isTopPkg}}
     <div class = "card">
         <span class="item">{{this.title}}</span>
-        <img class = "img" src =/img/{{this.img}} alt = {{this.title}}>
+        <img class = "img" src =/img/{{this.imgUrl}} alt = {{this.title}}>
         <span class ="price">${{this.price}}</span>
         <span class ="synopsis">{{this.synopsis}}</span>
         </div>

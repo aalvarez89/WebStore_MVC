@@ -1,22 +1,32 @@
 const express = require('express');
 const router = express.Router();
 
-const products = require("../models/products"); //REMOVE
-const { getAllProducts } = require("../models/products"); //REMOVE
+const db = require('../database.js');
+
 
 router.get("/", (req, res)=> {
-    res.render("index", {
-        title: "Home Page", 
-        slogan: "Canada's #1 Meal Kit!",
-        data: products.getAllProducts()
+
+    db.getMeals().then((data) => {
+        res.render('index', {
+            title: "Home Page",
+            slogan: "Canada's #1 Meal Kit!",
+            data: data
+        });
+    }).catch((err) => {
+        res.render('/');
     })
 }); 
 
 router.get("/productListing", (req, res)=> {
-    res.render("productListing", {
-        title: "Meal Packages", 
-        slogan: "Handcrafted Meal Kits",
-        data: products.getAllProducts()
+
+    db.getMeals().then((data) => {
+        res.render('productListing', {
+            title: "Meal Packages",
+            slogan: "Handcrafted Meal Kits",
+            data: data
+        });
+    }).catch((err) => {
+        res.render('/');
     })
 }); 
 

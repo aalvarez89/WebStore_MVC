@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
-
 const mongoose = require('mongoose');
+
+
 
 const Schema = mongoose.Schema;
 
@@ -26,7 +27,7 @@ const mealSchema = new Schema({
     noOfMeals: Number,
     calories: String,
     isTopPkg: Boolean,
-    imageUrl: String,
+    imgUrl: String,
 })
 
 
@@ -125,18 +126,11 @@ module.exports.validateUser = (data) => {
     return new Promise((resolve, reject) => {
         if (data) {
             this.getUsersByEmail(data.email).then((foundStudent) => {
-                
-                // Pull the password "hash" value from the DB and compare it to "myPassword123" (match)
                 bcrypt.compare(data.password, foundStudent[0].password).then((pwMatches) => {
                     if (pwMatches) {
-                        // pwMatches === true
-                        // resolve and pass the user back
-                        // console.log(foundStudent[0])
                         resolve(foundStudent)
 
                     } else {
-                        // pwMatches === false
-                        // reject pass error
                         reject("Passwords don't match")
                         return
 
@@ -178,4 +172,46 @@ module.exports.createMeal = (data) => {
             }
         })
     })
+}
+
+module.exports.getMeals = (data) => {
+    return new Promise ((resolve, reject) => {
+        Meals.find()
+        .exec()
+        .then((returnedMeals) => {
+            resolve(returnedMeals.map((meal) => meal.toObject()))
+        }).catch((err) => {
+            console.log(`Error retrieving Meals: ${err}`)
+            reject(err)
+        })
+    })
+}
+
+module.exports.editMeal = (editData)=>{
+    return new Promise((resolve, reject)=>{
+        editData.isTopPkg = (editData.isTopPkg)? true: false;
+       
+        Meals.updateOne(
+        {title : editData.title},
+        {$set: { 
+            title: editData.title,
+            included: editData.included,
+            category: editData.category,
+            price: editData.price,
+            synopsis: editData.synopsis,
+            imageUrl: editData.imageUrl,
+            cookTime: editData.cookTime,
+            noOfMeals: editData.noOfMeals,
+            calories: editData.calories,
+            isTopPkg: editData.isTopPkg
+        }})
+        .exec() //calls the updateOne as a promise
+        .then(()=>{
+            console.log(`Meal ${editData.name} has been updated`);
+            resolve();
+        }).catch((err)=>{
+            reject(err);
+        });
+     
+    });
 }
