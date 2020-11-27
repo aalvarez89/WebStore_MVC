@@ -133,10 +133,11 @@ router.post("/login", (req, res)=> {
             console.log(inData)
             req.session.user = inData;
 
-            res.render("dashboard", {
-                title: "Dashboard",
-                users: inData[0]
-            })
+            // res.render("dashboard", {
+            //     title: "Dashboard",
+            //     users: inData[0]
+            // })
+            res.redirect("/user/dashboard")
 
         }).catch((err) => {
             console.log(err)
