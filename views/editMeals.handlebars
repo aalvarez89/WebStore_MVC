@@ -57,11 +57,13 @@
         </label>
         <input type="text" id="form-calories" name="calories" placeholder="Meal Calories" autocomplete="off"
             value="{{ calories }}" />
+        <div class="tpg-cont">
+            <label for="form-isTopPkg">
+                Top Package
+            </label>
+            <input id="form-isTopPkg" type="radio" name="isTopPkg" value="false" {{!-- value="{{ isTopPkg }}" --}} />
 
-        <label for="form-isTopPkg">
-            Top Package
-        </label>
-        <input id="form-isTopPkg" type="radio" name="isTopPkg" value="false" {{!-- value="{{ isTopPkg }}" --}} />
+        </div>
 
 
         <label for="form-imgUrl">

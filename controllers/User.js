@@ -1,9 +1,14 @@
+//Framework
 const express = require('express');
-const db = require('../database.js');
 const router = express.Router();
-const path = require("path");
+
+//Database
+const db = require('../database.js');
+
+//Email App
 const mailgun = require("mailgun-js")({apiKey: process.env.EMAILPW, domain: process.env.EDOMAIN}); 
 
+// const path = require("path");
 
 
 function ensureLogin(req, res, next) {
@@ -129,14 +134,7 @@ router.post("/login", (req, res)=> {
     } else {
         db.validateUser(req.body)
         .then((inData) => {
-            // Logs in a user
-            console.log(inData)
             req.session.user = inData;
-
-            // res.render("dashboard", {
-            //     title: "Dashboard",
-            //     users: inData[0]
-            // })
             res.redirect("/user/dashboard")
 
         }).catch((err) => {
@@ -160,7 +158,7 @@ router.get("/createmeals", ensureAdmin, (req, res)=> {
     })
 }); 
 
-router.post("/createmeals", (req, res)=> {
+router.post("/createmeals", ensureAdmin, (req, res)=> {
     let errors = {
         messages : [],
         fName: '',
@@ -168,20 +166,26 @@ router.post("/createmeals", (req, res)=> {
         email: ''
     };
    
+    if(!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files')
+    }
+    let imageFile = req.files.file;
+    // console.log(imageFile)
+    // req.files.profilePic.name = `pro_pic_${userSaved._id}${path.parse(req.files.profilePic.name).ext}`;
+        
+    imageFile.mv(`public/img/${imageFile.name}`)
 
+    console.log(req.body.imgUrl)
+    req.body.imgUrl = imageFile.name;
 
     if (errors.messages.length > 0) {
         res.render('createmeals', errors)
     } else {
         // console.log(req.session.user[0].FirstName) // USE THIS!!!
         db.createMeal(req.body).then((inData) => {
-            console.log(inData)
-            console.log(req.files)
-            req.session.user = inData;
-            res.render('dashboard', {
-                title: "Dashboard",
-                users: req.session.user
-            }) 
+            // console.log(inData)
+            // console.log(req.files)
+            res.redirect('/user/dashboard')
         }).catch((err) => {
             console.log(`Error adding meal ${err}`)
             res.redirect('/user/createmeals')
@@ -207,18 +211,18 @@ router.post("/editmeals", ensureAdmin, (req,res)=>{
 });
 
 router.get("/viewmeals", ensureAdmin, (req,res) => {
-    db.getMeals().then((data) => {
+    db.getMeals().then((inData) => {
         res.render('viewMeals', {
             title: "View Meals",
             slogan: "Meals List",
-            data: data
+            data: inData
         });
     }).catch((err) => {
         res.render('/');
     })
 })
 
-router.get("/cart", ensureAdmin, (req, res)=> {
+router.get("/cart", ensureLogin, (req, res)=> {
     res.render("cart", {
         title: "Shopping Cart",
         slogan: "Ready to Checkout?"

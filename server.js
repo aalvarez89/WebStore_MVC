@@ -1,7 +1,6 @@
 //Express
 const express = require("express"); 
 const app = express();
-const router = express.Router();
 
 
 //Dotenv
@@ -40,7 +39,7 @@ app.use(session({
 
 app.use((req, res, next)=>{
     // res.locals.user is a global handlebars variable.
-    // This means that ever single handlebars file can access that user variable
+    // This means that every single handlebars file can access that user variable
     res.locals.user = req.session.user;
     next();
 });

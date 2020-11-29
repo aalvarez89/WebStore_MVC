@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
-
+// SCHEMAS
 
 const Schema = mongoose.Schema;
 
@@ -17,6 +17,7 @@ const userSchema = new Schema({
     isAdmin: Boolean
 })
 
+
 const mealSchema = new Schema({
     title: String,
     included: String,
@@ -31,10 +32,10 @@ const mealSchema = new Schema({
 })
 
 
+// INIT
 
 let Users;
 let Meals;
-
 
 module.exports.initialize = () => {
     return new Promise ((resolve, reject) => {
@@ -93,7 +94,7 @@ module.exports.addUser = (data) => {
     })
 }
 
-module.exports.getUsers = (data) => {
+module.exports.getUsers = () => {
     return new Promise ((resolve, reject) => {
         Users.find()
         .exec()
@@ -106,9 +107,9 @@ module.exports.getUsers = (data) => {
     })
 }
 
-module.exports.getUsersByEmail = (inEmail) => {
+module.exports.getUsersByEmail = (email) => {
     return new Promise ((resolve, reject) => {
-        Users.find({email: inEmail})
+        Users.find({email: email})
         .exec()
         .then((returnedUsers) => {
 

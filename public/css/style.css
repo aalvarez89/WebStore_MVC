@@ -239,6 +239,13 @@ button {
     text-align: center; 
 }
 
+/* create meals form */
+.tpg-cont {
+    display: flex;
+    flex-direction: column;
+    padding: 25px 0;
+}
+
 /* responsive design  */
 /* phone landscape and smaller  */
 

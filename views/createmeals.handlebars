@@ -1,6 +1,6 @@
 <article class="register">
 
-    <form action="/user/createmeals" method="POST" class="register-form" encType=”multipart/form-data”>
+    <form action="/user/createmeals" method="POST" class="register-form" enctype="multipart/form-data">
 
 
         <div class="errors">
@@ -58,21 +58,22 @@
         <input type="text" id="form-calories" name="calories" placeholder="Meal Calories" autocomplete="off"
             value="{{ calories }}" />
 
-        <label for="form-isTopPkg">
-            Top Package
-        </label>
-        <input id="form-isTopPkg" type="radio" name="isTopPkg" value="false" {{!-- value="{{ isTopPkg }}" --}} />
+        <div class="tpg-cont">
+            <label for="form-isTopPkg">
+                Top Package
+            </label>
+            <input id="form-isTopPkg" type="radio" name="isTopPkg" value="false" {{!-- value="{{ isTopPkg }}" --}} />
+            
+        </div>
 
 
-        <label for="form-imgUrl">
-            Image URL
-        </label>
-        <input id="form-imgUrl" type="text" name="imgUrl" placeholder="URL" value="{{ imgUrl }}" />
+        
+        <input id="form-imgUrl" type="hidden" name="imgUrl" placeholder="URL" {{!--value="{{ imgUrl }}" --}}/>
 
         <label for="form-imageFile">
             Upload Image
         </label>
-        <input id="form-imageFile" type="file" name="imageFile" />
+        <input id="form-imageFile" type="file" name="file" />
 
 
 
