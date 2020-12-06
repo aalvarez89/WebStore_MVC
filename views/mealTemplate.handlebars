@@ -1,3 +1,12 @@
-<img src=/img/{{ mealData.imgUrl }} alt="{{mealData.included}}" class="meal-banner" >
-<h4>{{ mealData.title }}</h4>
-<button>Add To Cart</button>
+
+<article class="meal-template">
+    <img src=/img/{{ mealData.imgUrl }} alt="{{mealData.included}}" class="meal-banner" >
+    <h4>{{ mealData.title }}</h4>
+
+    <form action=":id/add" method="post">
+        <input type="hidden" name="mealId" value="{{mealData._id}}"/>
+        <input id="form-submit" type="submit" value="Add to Cart" />
+
+    </form>
+
+</article>

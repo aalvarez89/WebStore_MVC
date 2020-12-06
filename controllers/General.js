@@ -30,14 +30,6 @@ router.get("/productListing", (req, res) => {
     })
 }); 
 
-router.get("/productListing/:id", (req,res) => {
-    db.getMealById(req.params.id).then((data) => {
-        console.log(data)
-        res.render('mealTemplate', {mealData: data})
-    }).catch((err) => {
-        res.render('/')
-    })
-})
 
 
 

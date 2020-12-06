@@ -166,6 +166,13 @@ form input {
 h3 {
     text-align: center; 
 }
+
+.meal-template {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .menuWrapper {
     background-color: #d5e8e5; 
     border-radius: 50px;
