@@ -115,7 +115,7 @@ img {
     font-size: 14px;
 }
 .buyButton {
-    width: 100px; 
+    width: 180px; 
     font-size: 15px; 
     margin: 10px; 
     background: #DBEAE6; 
@@ -208,8 +208,8 @@ h3 {
     align-items: center;
     border: 1px solid #c9c9c9;     
 }
-.buybutton {
-    width: 15%;
+.buycartbutton {
+    width: 180px;
     height: 100%;
     float: left;
 }
@@ -245,6 +245,18 @@ button {
     flex-direction: column;
     padding: 25px 0;
 }
+
+/* unique meal listing */
+.meal-banner {
+    height: 100px;
+    width: 120px;
+    filter: grayscale(100%);
+}
+
+/* .meal-banner {
+    filter: grayscale(0%);    
+} */
+
 
 /* responsive design  */
 /* phone landscape and smaller  */
@@ -437,3 +449,4 @@ button {
             font-size: 25px; 
         }
 }
+

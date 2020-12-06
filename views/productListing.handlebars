@@ -3,11 +3,12 @@
     {{#each data}}
     <div class="card">
         <span class="item">{{this.title}}</span>
-        <img class = "img" src =/img/{{this.imgUrl}} alt = {{this.title}}>
+        <img class = "img" src=/img/{{this.imgUrl}} alt = {{this.title}}>
         <span class="included">{{this.included}}</span>
         <span class ="synopsis">{{this.synopsis}}</span>
         <span class ="category">{{this.category}} Meal</span>
-        <button class="buyButton"><a href="#">BUY</a></button>
+        {{!-- <p>{{this._id}}</p> --}}
+        <a href="/productListing/{{this._id}}"><button class="buyButton">View Meal</button></a>
     </div>
     {{/each}}
 

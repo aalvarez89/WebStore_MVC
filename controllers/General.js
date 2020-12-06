@@ -4,7 +4,7 @@ const router = express.Router();
 const db = require('../database.js');
 
 
-router.get("/", (req, res)=> {
+router.get("/", (req, res) => {
 
     db.getMeals().then((data) => {
         res.render('index', {
@@ -17,7 +17,7 @@ router.get("/", (req, res)=> {
     })
 }); 
 
-router.get("/productListing", (req, res)=> {
+router.get("/productListing", (req, res) => {
 
     db.getMeals().then((data) => {
         res.render('productListing', {
@@ -29,6 +29,15 @@ router.get("/productListing", (req, res)=> {
         res.render('/');
     })
 }); 
+
+router.get("/productListing/:id", (req,res) => {
+    db.getMealById(req.params.id).then((data) => {
+        console.log(data)
+        res.render('mealTemplate', {mealData: data})
+    }).catch((err) => {
+        res.render('/')
+    })
+})
 
 
 

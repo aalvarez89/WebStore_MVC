@@ -188,6 +188,23 @@ module.exports.getMeals = (data) => {
     })
 }
 
+module.exports.getMealById = (mealId) => {
+    return new Promise ((resolve, reject) => {
+
+        Meals.find()
+        .exec()
+        .then((returnedMeals) => {
+            // let idMeal = returnedMeals.filter(m => m._id == mealId  )[0].toObject();
+            // console.log("mealId: ", mealId)
+            // resolve(returnedMeals.map((meal) => meal.toObject()).filter(m => m._id == mealId))
+            resolve(returnedMeals.filter(m => m._id == mealId).map(m => m.toObject())[0])
+        }).catch((err) => {
+            console.log(`Error retrieving Meal: ${err}`)
+            reject(err)
+        })
+    })
+}
+
 module.exports.editMeal = (editData)=>{
     return new Promise((resolve, reject)=>{
         editData.isTopPkg = (editData.isTopPkg)? true: false;
