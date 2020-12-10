@@ -146,7 +146,12 @@ router.post("/login", (req, res) => {
 
             }).catch((err) => {
                 console.log(err)
-                res.redirect("/login")
+                // res.redirect("/login")
+                res.render("login", {
+                    title: "Login",
+                    slogan: "Enjoy Your Meal!",
+                    messages: [err]
+                })
             })
     }
 })
@@ -257,7 +262,7 @@ router.post("/productListing/:id/add", ensureLogin, (req, res) => {
     db.getMealById(req.body.mealId).then((data) => {
         // console.log(data)
         cart.addItem(data)
-        res.redirect('/user/dashboard')
+        res.redirect('/productListing')
 
     }).catch((err) => {
         res.redirect('/login')

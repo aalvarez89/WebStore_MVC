@@ -1,11 +1,38 @@
 
 <article class="meal-template">
     <img src=/img/{{ mealData.imgUrl }} alt="{{mealData.included}}" class="meal-banner" >
-    <h4>{{ mealData.title }}</h4>
+    <h4 class="meal-title">{{ mealData.title }}</h4>
+    <p class="meal-contains">{{ mealData.included }}</p>
+    <div class="separator"></div>
+    <p class="meal-description">{{mealData.synopsis}}</p>
+
+    <div class="meal-details-wrapper">
+        <div class="meal-box">
+            <h5 class="det-subtitles">
+              Calories  
+            </h5>
+            <p class="det-content">{{mealData.calories}}</p>
+        </div>
+        <div class="meal-box">
+            <h5 class="det-subtitles">
+              Servings  
+            </h5>
+            <p class="det-content">{{mealData.noOfMeals}}</p>
+        </div>
+        <div class="meal-box">
+            <h5 class="det-subtitles">
+              Prep Time  
+            </h5>
+            <p class="det-content">{{mealData.cookTime}}</p>
+        </div>
+    </div>
+
 
     <form action=":id/add" method="post">
+
         <input type="hidden" name="mealId" value="{{mealData._id}}"/>
-        <input id="form-submit" type="submit" value="Add to Cart" />
+
+        <input id="form-submit" type="submit" value="Buy for {{ mealData.price }}" class="meal-submit" />
 
     </form>
 

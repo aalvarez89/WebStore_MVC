@@ -3,7 +3,7 @@
     {{#each data}}
     <div class="card">
         <span class="item">{{this.title}}</span>
-        <img class = "img" src=/img/{{this.imgUrl}} alt = {{this.title}}>
+        <a href="/user/productListing/{{this._id}}"><img class = "img" src=/img/{{this.imgUrl}} alt={{this.title}}></a>
         <span class="included">{{this.included}}</span>
         <span class ="synopsis">{{this.synopsis}}</span>
         <span class ="category">{{this.category}} Meal</span>
